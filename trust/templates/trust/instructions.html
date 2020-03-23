@@ -1,0 +1,65 @@
+{% load otree %}
+
+<style>
+    .card.debug-info {
+        display: none;
+    }
+</style>
+
+
+<div class="card bg-light instructions">
+	<!--
+    <div class="card-body">
+
+    <h4>
+        Investor's Money
+    </h4>
+
+    <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+    aria-valuemin="0" aria-valuemax="100" style="width:100%">
+    10 units
+    </div></div>
+
+    <br />
+
+    <h4>
+        Trustee's Money
+    </h4>
+
+    <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70"
+    aria-valuemin="0" aria-valuemax="100" style="width:10%">
+    3 units
+    </div>
+    </div>
+-->
+
+    <br />
+    <h3>
+        Instructions
+    </h3>
+
+    <p>
+        <br>1. <strong>Investors</strong> will send a certain amount of money to the trustee, which will be tripled before being sent.
+        <br>2. <strong>Trustees</strong> will have the choice to return any of the tripled amount back to the investor.
+        <br>3. Each round restarts your earnings.
+        <br>4. Although you'll be given $10 to start each round, the amount you earn from each round will accumulate separately.
+        <br>5. Total earnings will determine how many raffle tickets you win for the lottery.
+    <p>
+        <br>Please take the separate Qualtrics survey in the other window between the trials of the game.
+        If you have any questions, a research assistant will be outside to help you. Good luck!
+    </p>
+    <!--
+        The investor can send some or all of
+        his/her {{ Constants.endowment }} to the trustee.
+        Before the trustee receives this amount, it will be multiplied
+        by {{ Constants.multiplier }}. Once trustee receives
+        the tripled amount he/she can decide to send some or all of it to
+        investor. <br>
+
+        Total earnings will impact your lottery ticket winnings.
+    </p>
+    -->
+</div>
+</div>

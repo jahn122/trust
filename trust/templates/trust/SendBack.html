@@ -1,0 +1,85 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Your Choice
+{% endblock %}
+
+<style>
+    .card.debug-info {
+        display: none;
+    }
+</style>
+
+{% block content %}
+<p>
+    <br>
+        <strong>Trustee</strong>
+    <p>
+    <strong> Condition {{Constants.condition_number}} </strong> <br>
+        <b> Round {{round_number}} </b>
+
+    <br> The investor sent  <strong>{{group.invest}}</strong> leaving them with <strong>{{ payoffA }}.</strong><br>
+    You received <strong>{{tripled_amount}}.</strong> <br>
+<p>
+    Choose a range of percentages to return, and a random number will be chosen from the range. <br>
+<p>
+    <strong>Guide: </strong> <br>
+    Condition 1: Generous <br>
+    Block 1: 45-55% <br>
+    Block 2: 55-65% <br>
+    Block 3: 65-75% <br>
+    Block 4: 75-85% <br>
+    <br>
+    Condition 2: Non-generous <br>
+    Block 1: 45-55% <br>
+    Block 2: 35-45% <br>
+    Block 3: 25-35% <br>
+    Block 4: 15-25% <br>
+    <br>
+    Rounds 1-10: Block 1 <br>
+    Rounds 11-20: Block 2 <br>
+    Rounds 21-30: Block 3 <br>
+    Rounds 31-40: Block 4 <br>
+
+</p>
+
+{% formfield group.reciprocate label = prompt%}
+
+
+<p id="payoffMsg"></p></p>
+
+    <p>{% next_button %}</p>
+    {% include Constants.instructions_template %}
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+$(document).ready( function() {
+    //var $sentDiv = $('#sent');
+
+
+    $('input').change( function () {
+        var payoffMsg;
+        var sent_back_choice = $('input[name=reciprocate]:checked').val();
+
+        var reciprocate = tripled_amount * sent_back_choices;
+
+        var sentAmount = {{group.invest|json }};
+
+        var endowment = {{Constants.endowment|json }};
+        var tripled_amount = {{ group.reciprocate_max|json}};
+        var leftAmount = tripled_amount - reciprocate;
+        var payoffA = endowment - sentAmount + Number(reciprocate);
+        payoffMsg = 'The investor currently has $' + payoffA + ' you currently have $' + leftAmount ;
+
+        $('p#payoffMsg').text(payoffMsg);
+
+
+    });
+
+});
+</script>
+
+{% endblock %}

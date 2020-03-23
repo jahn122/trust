@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+
+    <style>
+    .card.debug-info {
+        display: none;
+    }
+    </style>
+
+    <p>
+    You have been randomly and anonymously paired with a participant in the other room.
+        For this session, you've been chosen to be the <b>Investor</b>. <br>
+        <strong>Investors</strong> will start with $10 while the <strong>trustee</strong> will start with $0.
+    <p>
+        <br>1. <strong>Investors</strong> will send a certain amount of money to the trustee, which will be tripled before being sent.
+        <br>2. <strong>Trustees</strong> will have the choice to return any of the tripled amount back to the investor.
+        <br>3. Each round restarts your earnings.
+        <br>4. Although you'll be given $10 to start each round, the amount you earn from each round will accumulate separately.
+        <br>5. Total earnings will determine how many raffle tickets you win for the lottery.
+    <p>
+        <br>Please take the separate Qualtrics survey in the other window between the trials of the game.
+        If you have any questions, a research assistant will be outside to help you. Good luck!
+    </p>
+<!--
+<p>
+        You have been randomly and anonymously paired with another participant.
+        One of you will be selected at random to be participant investor;
+        the other will be participant trustee.
+        You will learn whether you are participant investor or trustee prior to making any
+        decision.
+    </p>
+    <p>
+        To start, investor receives {{ Constants.endowment }};
+        participant trustee receives
+        nothing.
+        Participant investor can send some or all of
+        his/her {{ Constants.endowment }} to participant trustee.
+        Before trustee receives this amount, it will be multiplied
+        by {{ Constants.multiplier }}. Once trustee receives
+        the tripled amount he/she can decide to send some or all of it to
+        investor.
+    </p>
+-->
+    {% next_button %}
+
+{% endblock %}

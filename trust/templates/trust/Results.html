@@ -1,0 +1,72 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+<style>
+    .card.debug-info {
+        display: none;
+    }
+</style>
+
+{% block title %}
+
+    {% if round_number == 10 or round_number == 20 or round_number == 30 or round_number == 40 %}
+        {% if player.role == 'Trustee' %}
+            <p style="color: red; font-size: 24px;"> Please wait while the participant takes the survey.</p>
+
+        {% else %}
+            <p style="color: red; font-size: 24px;">At this moment please take the Qualtrics survey in the other window. <br> Please return to the game when you're finished. </p>
+        {% endif %}
+
+        Results
+    {% else %}
+        Results
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<!-- double parentheses to call variables -->
+
+    {% if player.role == 'Investor' %}
+        <p>
+            <strong>Round Results</strong><br>
+            You sent <strong>{{ group.invest }}</strong> to the trustee <br>
+            The trustee sent {{ reciprocate_percent }}% of {{ tripled_amount }} to return: <strong>{{ reciprocate }}</strong> <br>
+            <p>
+            Total earned from this round:
+            ({{ Constants.endowment }}) - ({{ group.invest }}) + ({{ reciprocate }}) = <strong>{{ player.payoff }}</strong>
+            <p>
+            <br>
+            <strong>Cumulative Total</strong><br>
+            Your cumulative total: {{ user_total_profits }}  <br>
+            Trustee's total: {{ pa_total_profits }}
+            <p>
+            Click next to continue.
+            </p>
+        </p>
+    {% else %}
+        <p>
+            <strong>Round Results</strong><br>
+            The investor sent you: <strong>{{ group.invest }}</strong> <br>
+            <!--Amount received after tripled: <strong>{{ tripled_amount }}</strong> <br>-->
+            You returned: {{ tripled_amount }} x {{ group.reciprocate }} = <strong>{{ reciprocate }}</strong> <p>
+            Total earned from this round:
+            ({{ tripled_amount }}) - ({{ reciprocate }}) = <strong>{{ player.payoff }}</strong><br>
+            <p>
+            <br>
+            <strong>Cumulative Total</strong> <br>
+            Your cumulative total: {{ pa_total_profits }}  <br>
+            Investor's total: {{ user_total_profits }}
+        <p>
+            Click next to continue.
+            </p>
+        </p>
+
+    {% endif %}
+
+    <p>{% next_button %}</p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

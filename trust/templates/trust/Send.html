@@ -1,0 +1,64 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Investment Option
+{% endblock %}
+
+<style>
+    .card.debug-info {
+        display: none;
+    }
+</style>
+
+{% block content %}
+
+    <p>
+        As the investor you start with <strong>{{Constants.endowment}}</strong> to send.<br>
+        How much will you send to the trustee?
+    </p>
+
+    {% formfield group.invest label="Choose an amount from $0 to $10:" %}
+    <!--
+    <button type="button">
+    Click to preview result
+    </button>
+    -->
+    <p id="payoffMsg"></p>
+
+    <p>
+    {% next_button %}
+    </p>
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+$(document).ready( function() {
+    //var $sentDiv = $('#sent');
+
+    $('input').change( function () {
+        var payoffMsg;
+        var invest = $('input[name=invest]:checked').val();
+
+        //var sentAmount = {{group.invest|json }};
+
+        var endowment = {{Constants.endowment|json }};
+
+        var leftAmount = endowment - invest;
+        var payoffB = invest * 3;
+        payoffMsg = 'The trustee will receive $' + payoffB + ', leaving you with $' + leftAmount +'.';
+
+        $('p#payoffMsg').text(payoffMsg);
+
+
+    });
+
+});
+</script>
+
+
+{% endblock %}

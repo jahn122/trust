@@ -1,0 +1,36 @@
+{% load otree %}
+
+<style>
+    .card.debug-info {
+        display: none;
+    }
+</style>
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+
+    <h3>
+        Progress Bar
+    </h3>
+
+    <p>
+        You have been randomly and anonymously paired with another participant.
+        One of you will be selected at random to be participant investor;
+        the other will be participant trustee.
+        You will learn whether you are participant investor or trustee prior to making any
+        decision.
+    </p>
+    <p>
+        To start, investor receives {{ Constants.endowment }};
+        participant trustee receives
+        nothing.
+        Participant investor can send some or all of
+        his/her {{ Constants.endowment }} to participant trustee.
+        Before trustee receives this amount, it will be multiplied
+        by {{ Constants.multiplier }}. Once trustee receives
+        the tripled amount he/she can decide to send some or all of it to
+        investor.
+    </p>
+</div>
+</div>

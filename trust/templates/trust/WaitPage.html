@@ -1,0 +1,17 @@
+{% extends 'otree/WaitPage.html' %}
+{% load otree %}
+{% block title %}{{ title_text }}{% endblock %}
+
+
+{% block content %}
+
+    <style>
+        .card.debug-info {
+            display: none;
+        }
+    </style>
+
+    {{ body_text }}
+    <br>
+    <br>
+{% endblock %}
